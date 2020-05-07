@@ -1,0 +1,72 @@
+// wide screens
+@include mediaXl {
+    .my-projects{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+// Desktops & laptops
+@include mediaLg {
+    .my-projects{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+// Tablets
+@include mediaMd {
+    .brand, .items{
+        width: 100%!important;
+        float: none!important;
+        min-height: 0;
+          
+        &.show{
+            transform: translate3d(0, 0, 0)!important;
+        }
+    }
+
+    .brand{
+        height: 30vh!important;
+        transform: translate3d(-100%, 0, 0)!important;
+        .photo{
+            width: 150px!important;
+            height: 150px!important;
+        }
+    }
+
+    .items{
+        height: 70vh!important;
+        transform: translate3d(100%, 0, 0)!important;
+        font-size: 24px;
+    }
+    main {
+        text-align: center;
+        align-items: center;
+        h1{
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+    }
+    .info{
+        grid-template-areas: 
+            'info-image'
+            'info-text' 
+            'job1'
+            'job2'
+            'job3';
+        grid-template-columns: 1fr;
+    }
+    .my-projects{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+// Smartphones
+@include mediaSm {
+    .my-projects{
+        grid-template-columns: 1fr;
+    }
+}

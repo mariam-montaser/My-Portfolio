@@ -1,0 +1,129 @@
+// start menu button
+.menu-btn{
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    z-index: 3;
+    cursor: pointer;
+    @include easeOut;
+
+    .line{
+        width: 28px;
+        height: 3px;
+        margin: 0 0 5px 0;
+        background-color: setTextColor($backgroundColor);
+        @include easeOut;
+    }
+    
+    // Rotate into (X) with menu items
+    &.close{
+        transform: rotate(180deg);
+        .line{
+            //first line - rotate
+            &:first-of-type{
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            //second line - hide
+            &:nth-of-type(2){
+                opacity: 0;
+            }
+            //last line - rotate
+            &:last-of-type{
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+        }
+    }
+}
+
+//menu overlay
+
+.menu{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    opacity: .9;
+    visibility: hidden;
+    &.show{
+        visibility: visible;
+    }
+    .brand, .items{
+        display: flex;
+        flex-flow: column wrap;
+        width: 50%;
+        height: 100vh;
+        align-items: center;
+        float: left;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    // brand side
+    .brand{
+        margin: 0;
+        padding: 0;
+        background: $backgroundColor;
+        transform: translate3d(0, 100%, 0);
+        @include easeOut;
+        &.show{
+            // slide from bottom
+            transform: translate3d(0, 0, 0)
+        }
+
+        .photo{
+            width: 250px;
+            height: 250px;
+            background: url(../images/brand.jpeg);
+            background-size: cover;
+            border : 2px solid $mainColor;
+            border-radius: 50%;
+
+
+        }
+
+    }
+
+    //items sid
+    .items{
+        margin: 0;
+        padding: 0;
+        background: darken($backgroundColor, 5);
+        transform: translate3d(0, -100%, 0);
+        @include easeOut;
+        // slide from top
+        &.show{
+            transform: translate3d(0, 0, 0)
+        }
+
+        .item{
+            transform: translate3d(600px, 0, 0);
+            @include easeOut;
+            // slide from right
+            &.show{
+                transform: translate3d(0, 0, 0)
+            }
+            .nav-link{
+                display: inline-block;
+                font-size: 30px;
+                padding: 1rem 0;
+                text-transform: uppercase;
+                color: setTextColor($backgroundColor);
+                @include easeOut;
+                &:hover{
+                    color: $mainColor;
+                }
+            }
+            &.active > a{
+                color: $mainColor;
+            }
+        }
+
+        // dely each item slide 
+        @for $x from 1 to 5 {
+            .item:nth-child(#{$x}) {
+                transition-delay: $x * 0.1s;
+            }
+        }
+
+    }
+    
+}
